@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spira-mcp-server"
+version = "0.1.0"
+description = "MCP server that lets AI agents create, read, update and manage Spira test cases and test steps"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Alex Polychroniadis" }]
+keywords = ["mcp", "mcp-server", "spiratest", "spira", "test-management", "llm-agents"]
+dependencies = [
+    "mcp>=1.2.0,<2",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "respx",
+    "ruff",
+]
+
+[project.scripts]
+spira-mcp = "spira_mcp.server:main"
+
+[tool.setuptools]
+packages = ["spira_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
